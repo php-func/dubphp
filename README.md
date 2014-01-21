@@ -1,4 +1,4 @@
-dubphp.com
-==========
+![img](http://dubphp.com/img/box/Original_512.png)
 
-dubphp.com - libraries for PHP application
+http://dubphp.com - libraries for PHP application
+
