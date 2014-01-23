@@ -2,3 +2,8 @@
 
 http://dubphp.com - libraries for PHP application
 
+librariers:
+- services API
+- database Model DAO
+- converting data
+- helpers for views
