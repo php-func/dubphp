@@ -36,7 +36,6 @@ pozwalający na generowanie w locie (pobiera wszystkie parametry:
 2. wartość
 3. kolejny obiekt
 
-)
 
 ```
 new sourceFile( 'create', 'index.html'
