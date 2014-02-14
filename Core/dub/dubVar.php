@@ -25,8 +25,24 @@ class dubVar
     {
         $this->name = get_class( $this );
 //        $this->type = $this->getType( $data );
-        $this->child = $child;
+        $this->setChild( $data, $child );
         $this->set( $data ); // $this->data =
+    }
+
+    public function getChild()
+    {
+        return $this->child;
+    }
+
+    public function setChild( $data = null, $child = null  )
+    {
+        if( empty( $child ) )
+        {
+            $this->child = $data;
+        } else {
+            $this->child = $child;
+        }
+        return true;
     }
 
     /**
@@ -75,6 +91,36 @@ class dubVar
     }
 
 
+    public  function isHtmlDoc()
+    {
+//        return preg_match("/<[^<]+>/",$string,$m) != 0;
+
+        if ( preg_match('/<html.*/', $this->get() ) ) {
+            # Successful match
+            return true;
+        } else {
+            # Match attempt failed
+            return false;
+        }
+    }
+
+    public  function isHtmlContent()
+    {
+        preg_match(
+            "/<\/?\w+((\s+\w+(\s*=\s*(?:\".*?\"|'.*?'|[^'\">\s]+))?)+\s*|\s*)\/?>/",
+            $this->get(),
+            $matches);
+        if(count($matches)==0)
+        {
+            return FALSE;
+        }
+        else
+        {
+            return TRUE;
+        }
+    }
+
+
     /**
      * @param $var
      * @return bool|dubArray|dubFloat|dubInteger|dubResource|dubString|string
@@ -86,7 +132,7 @@ class dubVar
         if(is_null($var))
             return false; //'null';
         if(is_string($var))
-            return new dubString(); //'string';
+            return new dubVarString(); //'string';
         if(is_array($var))
             return new dubArray(); //'array';
         if(is_int($var))
@@ -97,6 +143,8 @@ class dubVar
             return new dubFloat(); //'float';
         if(is_resource($var))
             return new dubResource(); //'resource';
+
+
         //throw new NotImplementedException();
         return 'unknown';
     }

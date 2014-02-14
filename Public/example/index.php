@@ -16,13 +16,17 @@
     <title>test dub Lib</title>
     <style>
         body, textarea {
-            background-color: #222;
-            color: #aaee41;
+            font-family: Arial;
+            background-color: #111;
+            color: #a8ee62;
             margin: 0;
             padding: 7px 10px 10px 10px;
             border-color: #4c6a1e;
         }
     </style>
+
+    <script type="text/javascript"  src="debug.style.dub.js"></script>
+
 </head>
 <body>
 
@@ -35,8 +39,9 @@
 ?>
 
 <?php
-//    require 'dubTestFile.php';
-    require 'dubTestAction.php';
+    require 'dubTestFile.php';
+//    require 'dubTestAction.php';
+//    require 'dubTestXpath.php';
 ?>
 </body>
 </html>

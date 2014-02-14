@@ -10,7 +10,7 @@
  */
 ?>
 
-<pre>
+<!--<pre>-->
 
 <?php
 
@@ -21,6 +21,7 @@ require 'init.php';
 
 // URL:
 // index.php?emmet=div>p>span.content#cos
+/*
 $var = dubDebug (
             new dubRenderEmmet(  // render the HTML from emmet format
                 new dubHttpGet('emmet') // get param
@@ -28,6 +29,34 @@ $var = dubDebug (
         );
 
 echo $var;
+*/
+/*
+var_dump(
+            new dubRenderEmmet(  // render the HTML from emmet format
+                new dubHttpGet('emmet') // get param
+            )
+);
+*/
+$dub = new dubPhp(
+            new dubRenderEmmet(  // render the HTML from emmet format
+                new dubHttpGet('emmet') // get param
+            )
+        );
+
+//$dub
+
+echo $dub->make();
+
+/*
+{
+    "dubRenderEmmet":{
+    "data":"div>","elementType":null,"elementName":null,"child":{
+        "name":"dubHttpGet","data":"emmet","child":"emmet"},"separator":{
+        "tag":">","id":"#","class":"."},"name":"dubRenderEmmet"
+    }
+}
+*/
+
 
 //var_dump( new dubHttpGet('emmet'),  $var );
 /*

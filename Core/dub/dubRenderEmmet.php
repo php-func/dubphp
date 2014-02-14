@@ -27,9 +27,13 @@ class dubRenderEmmet extends dubVar
 }
 */
 
-// TODO if prefix not exist '>' than append to String:  'body>html'  char '>'
+// TODO: if prefix not exist '>' than append to String:  'body>html'  char '>'
     // e.g.  '>body>html'
     // for detect type of element
+
+// TODO: dubVarString
+// TODO: dubVarStringQuery
+
 /**
  * implementation of emment method to render html files
  * Class dubRenderEmmet
@@ -40,12 +44,14 @@ class dubRenderEmmet extends dubVar
     public $data;
     public $elementType;
     public $elementName;
+    public $child;
 
     public $separator = array(
         'tag' => '>',
         'id' => '#',
         'class' => '.'
     );
+
 
     function __construct( $data = null, $child = null )
     {
