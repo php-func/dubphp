@@ -63,3 +63,9 @@ Inny sposób na uzysaknie podobnego efektu poprze JS wysyłając ten obiekt do s
 }
 ```
 w taki sposób będzie tworzona treść na frameworku dubPHP, który będzie powiązany z dubJS, 
+
+How to execute
+---
+```
+/Public/example/index.php
+```
