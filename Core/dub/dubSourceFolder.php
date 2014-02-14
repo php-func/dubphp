@@ -3,15 +3,14 @@
  * This file is part of the dubphp  package.
  *
  * (c) Tom Sapletta <tom@sapletta.com> 
- * 14.02.14 17:05
+ * 14.02.14 23:03
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-class dubSourceHttp extends dubSource
+class dubSourceFolder extends dubSource
 {
-
     function __construct( $data = null, $child = null )
     {
         parent::__construct($data, $child);
@@ -23,29 +22,44 @@ class dubSourceHttp extends dubSource
 //        {
 //            throw new Exception ("Path ( $this->data ) to Data files is empty <br/>");
 //        }
-
-//        dubt( $this->get() );
-//        die;
-        if( is_object( $this->get() ) )
+        $filter = '*.*';
+        if( !is_array( $this->get() ) )
         {
-            $elements = $this->get()->make();
-        }
-
-
-
-//        dubt( $elements );
-        if( !is_array( $elements ) )
-        {
-            $result = file_get_contents( $elements );
+            $result = $this->getList( $filter );
         }
         else
         {
+            die('NOT');
             $result = array();
-            foreach( $elements as $url )
+
+            foreach( $this->get() as $url )
             {
-                $result[] = file_get_contents( $url );
+                $result[] = $this->getList( $filter );
             }
+
         }
+//        dubt( $result );
+//        die;
+        return $result;
+
+    }
+
+
+    public function getList( $filter = '*.*' )
+    {
+//        $filter = '*.htm';
+
+        $directory = $this->get();
+        $result = glob($directory );  //$filter
+
         return $result;
     }
+
+
+//foreach (new RecursiveIteratorIterator(new RecursiveDirectoryIterator('.')) as $filename)
+//{
+//echo "$filename\n";
+//}
+
+
 } 

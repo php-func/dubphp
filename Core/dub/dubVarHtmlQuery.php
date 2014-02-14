@@ -18,44 +18,49 @@ class dubVarHtmlQuery extends dubVar
     }
 
 
-    public function xpath( $query )
+    public function xpath( $query = null, $html_str = null )
     {
 //        var_dump( $query );
         $HTML = new DOMDocument(); //'1.0', 'iso-8859-1');
         $HTML->preserveWhiteSpace = false;
-
-//        dubt( $this );
 //        die;
-        $html_str = $this->getChild()->make();
 //        dubt( $html_str );
-
         $HTML->loadHTML( $html_str );
         $xpath = new DOMXPath( $HTML );
 
         return $xpath->query( $query );
 //        $result->length;
-
     }
 
     // TODO: implementing  dubSourceHttp.php
     public function make()
     {
+        $html_str = $this->getChild()->make();
+
+//        die;
+
+//        if( !is_array( $this->get() ) )
+        if( !is_array( $html_str ) )
+        {
+//            dubt( '!is_array');
 //        var_dump( $this->get() );
 //        die;
-        // "//a"
-        $elements = $this->xpath( $this->get() );
+            // "//a"
+//            $html_str = $this->getChild()->make();
 
-        $result = array();
-        foreach ($elements as $element)
-        {
-            // get ad url
+            $elements = $this->xpath( $this->get(), $html_str );
+
+            $result = array();
+            foreach ($elements as $element)
+            {
+                // get ad url
 //            $url = $result->getAttribute;
 //            var_dump( $result, $url );
 //            var_dump( $element->nodeName );
 
 //            $result[] = $element->nodeName;
 //            $result[] = $element->nodeValue;
-            $result[] = $element->textContent;
+                $result[] = $element->textContent;
 
 //            var_dump( $element->nodeValue );
 //            var_dump( $element->item(0)->nodeValue );
@@ -69,7 +74,7 @@ class dubVarHtmlQuery extends dubVar
 //            var_dump( $element->getAttribute('href') );
 //            $result = $element->getAttribute('href');
 //            ->nodeValue
-        }
+            }
 
 //        return $result;
 //        var_dump( $result );
@@ -82,6 +87,30 @@ class dubVarHtmlQuery extends dubVar
 //        }
 //        $data = file_get_contents( $this->data );
 //        var_dump( $data );
-        return $result;
+            return $result;
+        }
+        else
+        {
+//            dubt( 'is_array');
+//            dubt( $html_str );
+            $result = array();
+//            $data_array = $this->get();
+
+            foreach( $html_str as $html_str_val )
+            {
+//                dubt( $html_str_val );
+
+                $elements = $this->xpath( $this->get(), $html_str_val );
+                foreach ($elements as $element)
+                {
+//                    dubt( $element->textContent );
+                    $result[] = $element->textContent;
+                }
+            }
+//            dubt($result);
+//            die;
+            return $result;
+        }
+
     }
 } 
