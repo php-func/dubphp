@@ -48,8 +48,9 @@ class dubVarStringMerge extends dubVar
     public function makeArrayParts()
     {
         $elements = $this->get();
-        $elements_count = count($elements);
-        $elements_result = array();
+//        dubt( $elements );
+
+        $elements_count = $this->getCountParts();
         foreach( $elements as $key => $parts )
         {
             if( !is_array( $parts ) )
@@ -64,33 +65,38 @@ class dubVarStringMerge extends dubVar
     function make()
     {
         $elements = $this->makeArrayParts();
+
         $parts_count = count($elements);
         $elements_count = $this->getCountParts();
 
 //        dubt( $elements );
-//        die;
-
-
-
 //        $elements = $this->get();
 //        dubt( $elements );
 
         $elements_result = array();
 //
 
-        for( $yy = 0; $yy< $parts_count; $yy++)
+        for( $yy = 0; $yy< $elements_count; $yy++)
         {
 //            if( is_array($parts) && count($parts)>0 )
 //            {
 //                foreach( $elements as $key => $part )
-                for( $xx = 0; $xx< $elements_count; $xx++)
+                for( $xx = 0; $xx< $parts_count; $xx++)
                 {
-                    if( !isset($elements_result[ $yy ]) )
+                    if( !isset($elements_result[ $yy ] ) )
                     {
                         $elements_result[ $yy ] = '';
                     }
-                    $elements_result[ $yy ] .= $elements[ $xx ][ $yy ];
-//                    $part_val = $element . $part;
+
+                    if( !isset( $elements[ $xx ][ $yy ] ) )
+                    {
+                        $elements[ $xx ][ $yy ] = '';
+                    }
+
+//                    var_dump( $xx , $yy , $elements[ $xx ][ $yy ], '<br>');
+//                    var_dump( $elements[ $xx ][ $yy ], '<br>' );
+
+                     $elements_result[ $yy ] .= $elements[ $xx ][ $yy ];
                 }
 //            }
         }

@@ -31,15 +31,14 @@
 <body>
 
 <?php
-    /**
-     * Init errors
-     */
-    ini_set('display_errors', 'On');
-    error_reporting(E_ALL);
+
+
+
 ?>
 
 <?php
-    require 'dubTestFile.php';
+    require 'dubTestTree.php';
+//    require 'dubTestFile.php';
 //    require 'dubTestAction.php';
 //    require 'dubTestXpath.php';
 ?>

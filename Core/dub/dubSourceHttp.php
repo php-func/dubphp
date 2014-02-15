@@ -30,7 +30,10 @@ class dubSourceHttp extends dubSource
         {
             $elements = $this->get()->make();
         }
-
+        else
+        {
+            $elements = $this->get();
+        }
 
 
 //        dubt( $elements );

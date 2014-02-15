@@ -18,7 +18,7 @@
 /**
  * loading: config, functions, autorouters
  */
-require 'init.php';
+require_once 'init.php';
 
 /*
     test for:
