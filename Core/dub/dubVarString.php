@@ -55,4 +55,55 @@ class dubVarString extends dubVar
         return $this;
     }
 
+
+//$rest = substr("abcdef", 2, -1);
+//$parts = explode("-", $mystring);
+//echo array_pop($parts);
+    function startsWith($haystack,$needle)
+    {
+        $res=FALSE;
+        if(mb_strripos($haystack,$needle,0,"utf-8")==0)
+            $res= TRUE;
+        return $res;
+    }
+
+    function endsWith($haystack,$needle)
+    {
+        $res=FALSE;
+        $len=mb_strlen($haystack);
+        $pos=$len-mb_strlen($needle);
+        if(mb_strripos($haystack,$needle,0,"utf-8")==$pos)
+            $res= TRUE;
+        return $res;
+    }
+
+    function getStringLeftByLength($utf8string, $length)
+    {
+        $cutted = mb_substr($utf8string, 0, $length);
+        echo 'leftByLength:'.$cutted.' ';
+        return $cutted;
+    }
+
+    function getStringRightByLength($utf8string, $length)
+    {
+//    echo 'rightByLength:'.$length.' ';
+        return mb_substr($utf8string, -$length);
+    }
+
+    function getPositionLeftByString($utf8string, $str_left)
+    {
+        $length = mb_strpos($utf8string, $str_left);
+        echo 'leftByString:'.$length.' ';
+        return leftByLength($utf8string, 0, $length);
+    }
+
+    function getPositionRightByString($utf8string, $str_right)
+    {
+        $length = mb_strpos($utf8string, $str_right);
+//    echo 'leftByString:'.$length.' ';
+        return rightByLength($utf8string, -$length);
+    }
+
+
+
 } 

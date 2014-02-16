@@ -23,9 +23,26 @@ class dubSource {
     public function __construct(  $data = null, $child = null  )
     {
         $this->name = get_class( $this );
-        $this->type = $this->getType( $data );
-        $this->child = $child;
+//        $this->type = $this->getType( $data );
+        $this->setChild( $data, $child );
         $this->set( $data ); // $this->data =
+    }
+
+
+    public function getChild()
+    {
+        return $this->child;
+    }
+
+    public function setChild( $data = null, $child = null  )
+    {
+        if( empty( $child ) )
+        {
+            $this->child = $data;
+        } else {
+            $this->child = $child;
+        }
+        return true;
     }
 
     /**

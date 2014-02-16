@@ -37,8 +37,8 @@
 ?>
 
 <?php
-    require 'dubTestTree.php';
-//    require 'dubTestFile.php';
+//    require 'dubTestTree.php';
+    require 'dubTestFile.php';
 //    require 'dubTestAction.php';
 //    require 'dubTestXpath.php';
 ?>

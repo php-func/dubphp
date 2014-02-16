@@ -62,10 +62,13 @@ $dub =
 
 
 $dub =
-    new dubVarHtmlQuery(
-        '//div/p/strong/a/@href',
-        new dubSourceHttp(
-            new dubSourceFolder( '/home/neptun/www/curl/company/*.htm' )
+    new dubSourceFileSave(
+        'page.list.txt',
+        new dubVarHtmlQuery(
+            '//div/p/strong/a/@href',
+            new dubSourceHttp(
+                new dubSourceFolder( '/home/neptun/www/curl/company/*.htm' )
+            )
         )
     );
 
@@ -73,54 +76,7 @@ $lista_url_wizytowka = $dub->make();
 dubt( $lista_url_wizytowka );
 
 
-//$rest = substr("abcdef", 2, -1);
-//$parts = explode("-", $mystring);
-//echo array_pop($parts);
-function startsWith($haystack,$needle)
-{
-    $res=FALSE;
-    if(mb_strripos($haystack,$needle,0,"utf-8")==0)
-        $res= TRUE;
-    return $res;
-}
-
-function endsWith($haystack,$needle)
-{
-    $res=FALSE;
-    $len=mb_strlen($haystack);
-    $pos=$len-mb_strlen($needle);
-    if(mb_strripos($haystack,$needle,0,"utf-8")==$pos)
-        $res= TRUE;
-    return $res;
-}
-
-function getStringLeftByLength($utf8string, $length)
-{
-    $cutted = mb_substr($utf8string, 0, $length);
-    echo 'leftByLength:'.$cutted.' ';
-    return $cutted;
-}
-
-function getStringRightByLength($utf8string, $length)
-{
-//    echo 'rightByLength:'.$length.' ';
-    return mb_substr($utf8string, -$length);
-}
-
-function getPositionLeftByString($utf8string, $str_left)
-{
-    $length = mb_strpos($utf8string, $str_left);
-    echo 'leftByString:'.$length.' ';
-    return leftByLength($utf8string, 0, $length);
-}
-
-function getPositionRightByString($utf8string, $str_right)
-{
-    $length = mb_strpos($utf8string, $str_right);
-//    echo 'leftByString:'.$length.' ';
-    return rightByLength($utf8string, -$length);
-}
-
+die;
 
 
 
@@ -154,7 +110,7 @@ die;
 
 //$mystring = "150-Adelaide-Street-Brisbane-Cbd-4305";
 
-$utf8string = 'http://www.wlw.de/p/elektro-maibach-gmbh-1010623?heading_id=78777';
+
 
 
 $str_left = '-';
@@ -190,7 +146,7 @@ $dub =
     );
 
 $list_url_email_part1 = $dub->make();
-dubt( $list_url_email_part1 );
+//dubt( $list_url_email_part1 );
 
 
 $dub =
@@ -205,7 +161,7 @@ $dub =
     );
 
 $list_heading_id = $dub->make();
-dubt( $list_heading_id );
+//dubt( $list_heading_id );
 
 
 
@@ -222,6 +178,10 @@ $dub =
 
 
 $list_url_email = $dub->make();
+
+$list_url_email = implode("\n",$list_url_email);
+file_put_contents('list.txt', $list_url_email);
+
 dubt( $list_url_email );
 
 
@@ -229,13 +189,6 @@ dubt( $list_url_email );
 //    - which format?
 // as yaml/csv format.
 // save, add, remove
-
-
-
-
-
-
-
 
 
 
@@ -283,14 +236,6 @@ dubt( $list_url_email_part1 );
 die;
 
 
-///email_enquiries/new?heading_id=78777&origin=fi
-
-/*
-
-http://www.wlw.de/p/spiess-elektro-markt-gmbh-998885?heading_id=78777
-http://www.wlw.de/p/spiess-elektro-markt-gmbh-998885/email_enquiries/new?heading_id=78777&origin=fi
-
-*/
 //stwórz na dysku zmienną, do której bedziesz sie odnosił
 // dub Source File Data
 
